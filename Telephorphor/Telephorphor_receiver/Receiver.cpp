@@ -29,7 +29,8 @@ void loop()
       
       //if it is the address of a device being monitored
       for(deviceInfo::iterator it = devices.begin(); it != devices.end(); ++it){
-        if( sub.compare(it->first) != 0 ){
+        if( sub.compare(it->first) != 0 ){ //it matches device
+          
           
       
       
