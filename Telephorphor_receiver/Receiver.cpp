@@ -1,16 +1,16 @@
+#include <Time.h>
+
 #include <vector>
 #include <sstream>
 #include <string>
 
 #include <Configuration.h>
+#include <Commands.h>
 #include <Devices.h>
-//#include <pwm_colour.h>
+
 using namespace std;
 
 SoftwareSerial radio = SoftwareSerial(rxPin, txPin);
-
-
-
   
 typedef map<string, Device> deviceInfo;
 deviceInfo devices;
@@ -19,15 +19,13 @@ devices["01"] = (Device) new RGBPWM(3, 5, 6);
 devices["02"] = {9, 10, 11};
 
 
-void setup()
-{
+void setup() {
   radio.begin(RADIO_BAUDRATE);
 }
 
 istringstream radioStream;
 
-void loop()
-{
+void loop() {
   //parse serial input
   while(radio.available())
   {
@@ -52,13 +50,14 @@ void loop()
       for(deviceInfo::iterator it = devices.begin(); it != devices.end(); ++it){
         if( address.compare(it->first) != 0 ){ //it matches address of a monitored device
           it->last.processCommand(command);
+          break; //???
         }
       }
     } 
   }
   
   for(deviceInfo::iterator it = devices.begin(); it != devices.end(); ++it){
-    it->last.update();
+    it->last.update(now());
   }
 }
   

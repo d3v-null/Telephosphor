@@ -1,7 +1,9 @@
+#include <Time.h>
 #include <Devices.h>
 
 class Device {
   vector<Command> commandBuffer;
+  
   
   public:
   Device();
@@ -16,12 +18,14 @@ class Device {
     
     
     //process parameters (rest of command)
-    if(code.compare("H") == 0){
+    if(       code.compare("H") == 0){
       commandBuffer.push_back(Hold(parameters));
     } else if(code.compare("T") == 0){
       commandBuffer.push_back(Transition(parameters));
     } else if(code.compare("W") == 0){
       commandBuffer.push_back(Wait(parameters));
+    } else if(code.compare("S") == 0){
+      if(commandBuffer.front().compare(new Wait(parameters))
     }
   }
   void update(){
