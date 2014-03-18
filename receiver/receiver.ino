@@ -1,12 +1,16 @@
-#include <Time.h>
 
+
+
+//#include <Configuration.h>
+#include "Commands.h"
+#include "Devices.h"
+#include <Time.h>
 #include <vector>
 #include <sstream>
-#include <string>
+//#include <string>
 
-#include <Configuration.h>
-#include <Commands.h>
-#include <Devices.h>
+
+
 
 using namespace std;
 
@@ -16,7 +20,7 @@ typedef map<string, Device> deviceInfo;
 deviceInfo devices;
 // devices["01"] = {3, 5, 6};
 devices["01"] = (Device) new RGBPWM(3, 5, 6);
-devices["02"] = {9, 10, 11};
+devices["02"] = (Device) new RGBPWM(9, 10, 11);
 
 
 void setup() {

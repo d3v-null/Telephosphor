@@ -1,0 +1,3 @@
+class statevector {
+  public:
+    virtual 
